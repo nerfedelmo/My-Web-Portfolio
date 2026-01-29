@@ -1,0 +1,369 @@
+@import "tailwindcss";
+
+/* Dark Mode Colors */
+:root {
+  --bg-body: #f8fafc;
+  --card-profile: #ffffff;
+  --card-edu: #ffffff;
+  --card-contact: #ffffff;
+  --card-project: #cccccc;
+  --card-connect: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-color: #e2e8f0;
+  --card-tech: #f8fafc;
+}
+
+.dark {
+  --bg-body: #0d1117;
+  --card-profile: #20242a;
+  --card-edu: #3d506c6c;
+  --card-contact: #556f9649;
+  --card-project: #253041;
+  --card-connect: #33445c;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-color: #30363d;
+  --card-tech: #0d1117;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* NavBar Animation */
+/* Generalized Reveal Animation */
+.bg-reveal {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit; /* Dynamically matches the parent's rounding */
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-reveal::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Size significantly larger than the container to ensure full coverage */
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease-out;
+}
+
+/* Reusable Trigger: Spreads when any parent with 'group' is hovered */
+.group:hover .bg-reveal::before {
+  transform: translate(-50%, -50%) scale(2);
+}
+
+/* CV button RGB */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rgb-border-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px; /* This controls the border thickness */
+  background: black;
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.rgb-border-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 150%;
+  height: 300%;
+  background: conic-gradient(
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  animation: rotate 4s linear infinite;
+  z-index: -2;
+}
+
+.rgb-border-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 3px; /* Matches the padding of wrapper */
+  background: black;
+  border-radius: 10px;
+  z-index: -1;
+}
+
+/* Github/badge buttons RGB */
+@keyframes rgb-glow-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-45deg);
+  }
+  100% {
+    transform: translateX(150%) skewX(-45deg);
+  }
+}
+
+.glow-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* The Glowing Beam */
+.glow-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%; /* Wider beam for a better glow spread */
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 255, 255, 1),
+    rgb(255, 255, 255),
+    transparent
+  );
+  filter: blur(15px); /* This creates the "glow" instead of a sharp line */
+  transform: translateX(-150%) skewX(-45deg);
+  pointer-events: none;
+}
+
+/* On Hover: Start Animation and add outer glow */
+.glow-button:hover::after {
+  animation: rgb-glow-sweep 1.5s infinite linear;
+}
+
+.glow-button:hover {
+  /* This adds a pulse effect to the whole button shadow */
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.4),
+    0 0 40px rgba(255, 0, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Border Glow on Github/badge Buttons */
+@keyframes border-glow {
+  0% {
+    transform: translate(-100%, -100%);
+  }
+  50% {
+    transform: translate(100%, 100%);
+  }
+  100% {
+    transform: translate(-100%, -100%);
+  }
+}
+
+.rgb-hover-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* The RGB Light Beam */
+.rgb-hover-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent,
+    #00ffff,
+    /* Cyan */ #ff00ff,
+    /* Pink */ #ffff00,
+    /* Yellow */ transparent 70%
+  );
+  animation: rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Internal mask to keep content clean */
+.rgb-hover-card::after {
+  content: "";
+  position: absolute;
+  inset: 3px; /* Border thickness */
+  background: var(--card-connect);
+  border-radius: 11px; /* Matches parent rounded-xl */
+  z-index: 1;
+  transition: background 0.3s;
+}
+
+.rgb-hover-card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure content stays above the animation */
+.rgb-hover-card > div {
+  position: relative;
+  z-index: 2;
+}
+
+/* Image Carousel Animation */
+/* Image 1: 0% - 25% */
+@keyframes slideFade {
+  0%,
+  20% {
+    opacity: 1;
+    z-index: 10;
+  }
+  25%,
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+/* Image 2: 25% - 50% */
+@keyframes slideFade2 {
+  0%,
+  20% {
+    opacity: 0;
+    z-index: 0;
+  }
+  25%,
+  45% {
+    opacity: 1;
+    z-index: 10;
+  }
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+/* Image 3: 50% - 75% */
+@keyframes slideFade3 {
+  0%,
+  45% {
+    opacity: 0;
+    z-index: 0;
+  }
+  50%,
+  70% {
+    opacity: 1;
+    z-index: 10;
+  }
+  75%,
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+/* Image 4: 75% - 100% */
+@keyframes slideFade4 {
+  0%,
+  70% {
+    opacity: 0;
+    z-index: 0;
+  }
+  75%,
+  95% {
+    opacity: 1;
+    z-index: 10;
+  }
+  100% {
+    opacity: 0;
+    z-index: 0;
+  }
+}
+
+/* Implementation: Use a 12s total duration (3s per image x 4 images) */
+.slider-img-1 {
+  animation: slideFade 12s infinite;
+}
+.slider-img-2 {
+  animation: slideFade2 12s infinite;
+}
+.slider-img-3 {
+  animation: slideFade3 12s infinite;
+}
+.slider-img-4 {
+  animation: slideFade4 12s infinite;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.whiteText {
+  color: var(--text-main);
+}
+
+.smallText {
+  color: var(--text-muted);
+}
+
+.techstack {
+  background-color: var(--card-tech);
+  color: var(--text-main);
+}
+
+/* Mapping classes to variables */
+.bg-custom-body {
+  background-color: var(--bg-body);
+}
+.profile-card-bg {
+  background-color: var(--card-profile);
+}
+
+.edu-card-bg {
+  background-color: var(--card-edu);
+}
+.contact-card-bg {
+  background-color: var(--card-contact);
+}
+.project-card-bg {
+  background-color: var(--card-project);
+}
+.contact-link-bg {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+}
+.text-custom-main {
+  color: var(--text-main);
+}
+.text-custom-muted {
+  color: var(--text-muted);
+}
+
+.dark .nav-link-svg path {
+  fill: none;
+  stroke: #f1f5f9;
+} /* For stroked icons */
+.dark .invert-dark {
+  filter: invert(1);
+}
+
+.dark nav svg {
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
