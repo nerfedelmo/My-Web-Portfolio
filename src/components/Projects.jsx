@@ -28,10 +28,10 @@ function ProjectCard({ project, onOpenLightbox }) {
   const activeImage = images[currentSlide] || thumbnail;
 
   return (
-    <div className="modern-card group flex flex-col rounded-3xl overflow-hidden p-5 sm:p-6">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group flex flex-col rounded-3xl overflow-hidden p-5 sm:p-6 shadow-xs hover:border-cyan-500/40 hover:shadow-md transition-all duration-300">
       {/* Image / Carousel Area */}
       <div
-        className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex justify-center items-center cursor-pointer"
+        className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex justify-center items-center cursor-pointer"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onClick={() => onOpenLightbox(activeImage, title)}
@@ -42,7 +42,7 @@ function ProjectCard({ project, onOpenLightbox }) {
           className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
         />
 
-        {/* Carousel controls (if multiple images) */}
+        {/* Carousel controls */}
         {isCarousel && (
           <>
             <button
@@ -69,7 +69,7 @@ function ProjectCard({ project, onOpenLightbox }) {
             </button>
 
             {/* Dots */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-2.5 py-1 rounded-full">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full">
               {images.map((_, dotIdx) => (
                 <button
                   key={dotIdx}
@@ -79,7 +79,7 @@ function ProjectCard({ project, onOpenLightbox }) {
                     setCurrentSlide(dotIdx);
                   }}
                   className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    currentSlide === dotIdx ? "w-4 bg-cyan-400" : "bg-white/50 hover:bg-white"
+                    currentSlide === dotIdx ? "w-4 bg-cyan-400" : "bg-white/60 hover:bg-white"
                   }`}
                   aria-label={`Go to slide ${dotIdx + 1}`}
                 />
@@ -88,17 +88,17 @@ function ProjectCard({ project, onOpenLightbox }) {
           </>
         )}
 
-        <span className="absolute top-2 right-2 text-[10px] font-medium px-2 py-0.5 rounded-full bg-black/50 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <span className="absolute top-2 right-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-black/60 text-white backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
           Click to Zoom
         </span>
       </div>
 
       {/* Content */}
       <div className="mt-5 flex flex-col grow">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
+        <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
           {title}
         </h3>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-2 leading-relaxed font-normal">
           {description}
         </p>
 
@@ -107,7 +107,7 @@ function ProjectCard({ project, onOpenLightbox }) {
           {tags.map((tag, tIdx) => (
             <span
               key={tIdx}
-              className="text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60"
+              className="text-[11px] font-semibold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-300/70 dark:border-slate-700/60"
             >
               {tag}
             </span>
@@ -115,7 +115,7 @@ function ProjectCard({ project, onOpenLightbox }) {
         </div>
 
         {/* Actions */}
-        <div className="mt-auto pt-6 flex items-center justify-between gap-3 border-t border-slate-100 dark:border-slate-800/80">
+        <div className="mt-auto pt-6 flex items-center justify-between gap-3 border-t border-slate-200/80 dark:border-slate-800/80">
           {githubUrl ? (
             <a
               href={githubUrl}
@@ -127,7 +127,7 @@ function ProjectCard({ project, onOpenLightbox }) {
               Source Code
             </a>
           ) : (
-            <span className="text-xs text-slate-400 italic">Internal Repo</span>
+            <span className="text-xs text-slate-500 italic">Internal Repo</span>
           )}
 
           {liveUrl && (
@@ -151,13 +151,13 @@ export default function Projects() {
   const [lightbox, setLightbox] = useState({ isOpen: false, src: "", title: "" });
 
   return (
-    <section id="projects" className="py-12 px-4 sm:px-8 lg:px-20 max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-20">
       <div className="flex items-center gap-3 mb-8">
-        <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+        <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-700 dark:text-cyan-400">
           <FolderGit2Icon className="w-5 h-5" />
         </div>
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
             Featured Engineering
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
@@ -188,7 +188,7 @@ export default function Projects() {
               <button
                 type="button"
                 onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
               >
                 <XIcon className="w-5 h-5" />
               </button>
@@ -197,6 +197,6 @@ export default function Projects() {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 }

@@ -15,10 +15,10 @@ function ActivityCard({ item, onOpenLightbox }) {
   const activeImage = images[currentSlide] || item.thumbnail;
 
   return (
-    <div className="modern-card group flex flex-col rounded-3xl overflow-hidden p-5">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group flex flex-col rounded-3xl overflow-hidden p-5 shadow-xs hover:border-cyan-500/40 hover:shadow-md transition-all duration-300">
       {/* Media Box */}
       <div
-        className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60 flex justify-center items-center cursor-pointer"
+        className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex justify-center items-center cursor-pointer"
         onClick={() => onOpenLightbox(activeImage, item.title)}
       >
         <img
@@ -36,7 +36,7 @@ function ActivityCard({ item, onOpenLightbox }) {
                 setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
               }}
               aria-label="Previous"
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
             >
               <ChevronLeftIcon className="w-3.5 h-3.5" />
             </button>
@@ -47,16 +47,16 @@ function ActivityCard({ item, onOpenLightbox }) {
                 setCurrentSlide((prev) => (prev + 1) % images.length);
               }}
               aria-label="Next"
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
             >
               <ChevronRightIcon className="w-3.5 h-3.5" />
             </button>
-            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/40 px-2 py-0.5 rounded-full">
+            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/50 px-2 py-0.5 rounded-full">
               {images.map((_, i) => (
                 <div
                   key={i}
                   className={`w-1.5 h-1.5 rounded-full ${
-                    currentSlide === i ? "bg-cyan-400 w-3" : "bg-white/50"
+                    currentSlide === i ? "bg-cyan-400 w-3" : "bg-white/60"
                   }`}
                 />
               ))}
@@ -68,7 +68,7 @@ function ActivityCard({ item, onOpenLightbox }) {
       {/* Content */}
       <div className="mt-4 flex flex-col grow">
         <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
+          <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
             {item.title}
           </h3>
           <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 shrink-0">
@@ -76,12 +76,12 @@ function ActivityCard({ item, onOpenLightbox }) {
           </span>
         </div>
 
-        <p className="text-xs text-slate-600 dark:text-slate-300 whitespace-pre-line mt-1 line-clamp-2">
+        <p className="text-xs text-slate-700 dark:text-slate-300 whitespace-pre-line mt-1 line-clamp-2 font-normal">
           {item.issuer}
         </p>
 
         {item.theme && (
-          <p className="text-[11px] text-cyan-600 dark:text-cyan-400 mt-1 italic">
+          <p className="text-[11px] text-cyan-700 dark:text-cyan-400 mt-1 italic font-medium">
             Theme: {item.theme}
           </p>
         )}
@@ -92,7 +92,7 @@ function ActivityCard({ item, onOpenLightbox }) {
             {item.tags.map((t, idx) => (
               <span
                 key={idx}
-                className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300"
+                className="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200/80 dark:border-slate-700/60"
               >
                 {t}
               </span>
@@ -101,7 +101,7 @@ function ActivityCard({ item, onOpenLightbox }) {
         )}
 
         {/* Footer Link */}
-        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800/80 flex justify-end">
+        <div className="mt-auto pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex justify-end">
           {item.badgeUrl ? (
             <a
               href={item.badgeUrl}
@@ -113,7 +113,7 @@ function ActivityCard({ item, onOpenLightbox }) {
               <ExternalLinkIcon className="w-3.5 h-3.5" />
             </a>
           ) : (
-            <span className="text-[11px] text-slate-400 italic">Participation Record</span>
+            <span className="text-[11px] text-slate-500 italic">Participation Record</span>
           )}
         </div>
       </div>
@@ -125,13 +125,13 @@ export default function Activities() {
   const [lightbox, setLightbox] = useState({ isOpen: false, src: "", title: "" });
 
   return (
-    <section id="activities" className="py-12 px-4 sm:px-8 lg:px-20 max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-20">
       <div className="flex items-center gap-3 mb-8">
-        <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+        <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-700 dark:text-cyan-400">
           <AwardIcon className="w-5 h-5" />
         </div>
         <div>
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+          <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
             Verified Credentials & Achievements
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
@@ -161,7 +161,7 @@ export default function Activities() {
               <button
                 type="button"
                 onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
               >
                 <XIcon className="w-5 h-5" />
               </button>
@@ -170,6 +170,6 @@ export default function Activities() {
           </div>
         </div>
       )}
-    </section>
+    </div>
   );
 }

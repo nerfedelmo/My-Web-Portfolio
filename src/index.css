@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Plus Jakarta Sans', var(--font-sans);
@@ -11,15 +13,13 @@
   --card-project: #ffffff;
   --card-connect: #f1f5f9;
   --text-main: #0f172a;
-  --text-muted: #475569;
+  --text-muted: #334155;
   --border-color: #e2e8f0;
   --card-tech: #ffffff;
-  --glow-primary: rgba(14, 165, 233, 0.15);
-  --glow-secondary: rgba(99, 102, 241, 0.15);
 }
 
 .dark {
-  --bg-body: #090d16;
+  --bg-body: #070b14;
   --card-profile: #0f172a;
   --card-edu: #0f172a;
   --card-contact: #0f172a;
@@ -29,8 +29,6 @@
   --text-muted: #94a3b8;
   --border-color: #1e293b;
   --card-tech: #0f172a;
-  --glow-primary: rgba(56, 189, 248, 0.15);
-  --glow-secondary: rgba(129, 140, 248, 0.15);
 }
 
 html {
@@ -45,40 +43,30 @@ h1, h2, h3, h4, h5, h6 {
 body {
   background-color: var(--bg-body);
   color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
   min-height: 100vh;
 }
 
-.bg-custom-body {
-  background-color: var(--bg-body);
+/* Base high-contrast typography helper classes */
+.heading-color {
+  color: #0f172a;
+}
+.dark .heading-color {
+  color: #f8fafc;
 }
 
-.text-custom-main {
-  color: var(--text-main);
+.body-color {
+  color: #334155;
+}
+.dark .body-color {
+  color: #cbd5e1;
 }
 
-.text-custom-muted {
-  color: var(--text-muted);
+.muted-color {
+  color: #64748b;
 }
-
-.profile-card-bg,
-.edu-card-bg,
-.project-card-bg,
-.contact-card-bg {
-  background-color: var(--card-profile);
-}
-
-.techstack {
-  background-color: var(--card-tech);
-  color: var(--text-main);
-}
-
-.whiteText {
-  color: var(--text-main);
-}
-
-.smallText {
-  color: var(--text-muted);
+.dark .muted-color {
+  color: #94a3b8;
 }
 
 /* Subtle modern reveal for buttons & cards */
@@ -108,6 +96,24 @@ body {
   transform: translate(-50%, -50%) scale(2);
 }
 
+/* Modern Card */
+.modern-card {
+  position: relative;
+  background-color: var(--card-profile);
+  border: 1px solid var(--border-color);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modern-card:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+
+.dark .modern-card:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
 /* Modern Glow Button */
 .glow-button {
   position: relative;
@@ -117,42 +123,24 @@ body {
 
 .glow-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 20px -2px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 4px 18px -2px rgba(56, 189, 248, 0.35);
 }
 
-/* Modern Subtle Card Highlight */
-.modern-card {
-  position: relative;
-  background-color: var(--card-profile);
-  border: 1px solid var(--border-color);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.modern-card:hover {
-  border-color: rgba(56, 189, 248, 0.4);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.1);
-}
-
-.dark .modern-card:hover {
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
-}
-
-/* Refined RGB/Gradient border wrapper */
+/* Subtle border glow */
 .rgb-border-wrapper {
   position: relative;
   display: inline-flex;
   padding: 1.5px;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc);
+  background: linear-gradient(135deg, #0284c7, #6366f1, #9333ea);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .rgb-border-wrapper:hover {
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 18px rgba(14, 165, 233, 0.35);
 }
 
-/* Clean Custom Scrollbar */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -162,10 +150,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b844;
+  background: #94a3b855;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b888;
+  background: #94a3b899;
 }
