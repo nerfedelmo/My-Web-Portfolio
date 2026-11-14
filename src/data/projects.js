@@ -1,36 +1,23 @@
 export const projects = [
+
   {
-    title: "CCAPathfinder",
+    title: "Capstone Project - SmileCheck Dental Clinic Web Application",
     description:
-      "A campus navigation and wayfinding application that lets university students and faculty explore interactive campus maps, building floor plans, and locate classrooms with room-level precision.",
-    stack: "Android Studio | Firebase",
-    tags: ["Android", "Java", "Firebase", "Maps API"],
-    githubUrl: "https://github.com/nerfedelmo",
-    liveUrl: null,
-    thumbnail: "/images/ccapathfinderlogo.png",
-    isCarousel: false,
-  },
-  {
-    title: "PetTrack",
-    description:
-      "A pet care companion application designed to maintain animal health records, log nutritional intake, track feeding schedules, and dispatch automated feeding notifications.",
-    stack: "Android Studio | Firebase",
-    tags: ["Android", "Firebase", "Cloud Messaging", "UI/UX"],
-    githubUrl: "https://github.com/nerfedelmo/PetTrack.git",
-    liveUrl: null,
-    thumbnail: "/images/pettracknobg.png",
-    isCarousel: false,
-  },
-  {
-    title: "Crisis Compass",
-    description:
-      "An emergency response Android platform featuring an AI first-aid assistant and live geospatial tracking for regional evacuation shelters, hospitals, and relief centers. Developed for the 2024 Cloudstaff Hackathon.",
-    stack: "Android Studio | Dify.AI",
-    tags: ["Android", "AI / LLM", "Dify.AI", "Geospatial", "Crisis Mgmt"],
-    githubUrl: "https://github.com/nerfedelmo/CrisisCompass",
-    liveUrl: null,
-    thumbnail: "/images/Crisis Compass Logo.png",
-    isCarousel: false,
+      "A full-stack, enterprise-grade dental practice management platform. Designed specifically for modern dental practices, it bridges clinical operations and patient engagement into a single secure, intuitive ecosystem.",
+    stack: "React | TypeScript | Tailwind CSS | Express | PostgreSQL | Groq SDK",
+    tags: ["React", "TypeScript", "Tailwind CSS", "Express", "PostgreSQL", "Groq SDK"],
+    githubUrl: "https://github.com/nerfedelmo/SmileCheck-System",
+    liveUrl: "https://smile-check-system-rouge.vercel.app/",
+    isCarousel: true,
+    carouselImages: [
+      "/images/SmileCheck_LandingPage.png",
+      "/images/SmileCheck_About.png",
+      "/images/SmileCheck_Booking.png",
+      "/images/SmileCheck_Dashboard.png",
+      "/images/SmileCheck_AddServices.png",
+      "/images/SmileCheck_AddDental.png",
+      "/images/SmileCheck_AddTreatment.png",
+    ],
   },
   {
     title: "EV Population Analysis",
@@ -47,5 +34,16 @@ export const projects = [
       "/images/DataAnalytics_CleanData.png",
       "/images/DataAnalytics_Raw.png",
     ],
+  },
+  {
+    title: "Crisis Compass",
+    description:
+      "An emergency response Android platform featuring an AI first-aid assistant and live geospatial tracking for regional evacuation shelters, hospitals, and relief centers. Developed for the 2024 Cloudstaff Hackathon.",
+    stack: "Android Studio | Dify.AI",
+    tags: ["Android", "AI / LLM", "Dify.AI", "Geospatial", "Crisis Mgmt"],
+    githubUrl: "https://github.com/nerfedelmo/CrisisCompass",
+    liveUrl: null,
+    thumbnail: "/images/Crisis Compass Logo.png",
+    isCarousel: false,
   },
 ];

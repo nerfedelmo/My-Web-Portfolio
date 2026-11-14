@@ -16,17 +16,18 @@ function ActivityCard({ item, onOpenLightbox }) {
 
   return (
     <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 group flex flex-col rounded-3xl overflow-hidden p-5 shadow-xs hover:border-cyan-500/40 hover:shadow-md transition-all duration-300">
-      {/* Media Box */}
+      {/* Media Box - Actual Certificate or Event Photo */}
       <div
-        className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex justify-center items-center cursor-pointer"
+        className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex justify-center items-center cursor-pointer group/img"
         onClick={() => onOpenLightbox(activeImage, item.title)}
       >
         <img
           src={activeImage}
           alt={item.title}
-          className="w-full h-full object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-contain p-1.5 transition-transform duration-500 group-hover/img:scale-105"
         />
 
+        {/* Carousel controls if multiple images (Convergence / Hackathons / CTF) */}
         {item.isCarousel && (
           <>
             <button
@@ -36,7 +37,7 @@ function ActivityCard({ item, onOpenLightbox }) {
                 setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
               }}
               aria-label="Previous"
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 cursor-pointer"
             >
               <ChevronLeftIcon className="w-3.5 h-3.5" />
             </button>
@@ -47,22 +48,32 @@ function ActivityCard({ item, onOpenLightbox }) {
                 setCurrentSlide((prev) => (prev + 1) % images.length);
               }}
               aria-label="Next"
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/80 cursor-pointer"
             >
               <ChevronRightIcon className="w-3.5 h-3.5" />
             </button>
-            <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-black/50 px-2 py-0.5 rounded-full">
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full">
               {images.map((_, i) => (
-                <div
+                <button
                   key={i}
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    currentSlide === i ? "bg-cyan-400 w-3" : "bg-white/60"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setCurrentSlide(i);
+                  }}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    currentSlide === i ? "bg-cyan-400 w-3.5" : "bg-white/60 hover:bg-white"
                   }`}
+                  aria-label={`Slide ${i + 1}`}
                 />
               ))}
             </div>
           </>
         )}
+
+        <span className="absolute top-2 right-2 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-black/60 text-white backdrop-blur-sm opacity-0 group-hover/img:opacity-100 transition-opacity pointer-events-none">
+          Click to Zoom
+        </span>
       </div>
 
       {/* Content */}
@@ -100,8 +111,16 @@ function ActivityCard({ item, onOpenLightbox }) {
           </div>
         )}
 
-        {/* Footer Link */}
-        <div className="mt-auto pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex justify-end">
+        {/* Footer Actions */}
+        <div className="mt-auto pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between">
+          <button
+            type="button"
+            onClick={() => onOpenLightbox(activeImage, item.title)}
+            className="text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+          >
+            Preview Document
+          </button>
+
           {item.badgeUrl ? (
             <a
               href={item.badgeUrl}
@@ -113,7 +132,7 @@ function ActivityCard({ item, onOpenLightbox }) {
               <ExternalLinkIcon className="w-3.5 h-3.5" />
             </a>
           ) : (
-            <span className="text-[11px] text-slate-500 italic">Participation Record</span>
+            <span className="text-[11px] text-slate-400 italic">Verified Document</span>
           )}
         </div>
       </div>
@@ -135,12 +154,13 @@ export default function Activities() {
             Verified Credentials & Achievements
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-            Activities & Certifications
+            Certifications & Activities
           </h2>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* Grid: 3 columns on large screens */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {activities.map((item, index) => (
           <ActivityCard
             key={index}
@@ -150,14 +170,20 @@ export default function Activities() {
         ))}
       </div>
 
+      {/* High-Res Document Lightbox Modal */}
       {lightbox.isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-in fade-in duration-200"
           onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
         >
-          <div className="relative max-w-4xl w-full bg-slate-900 p-4 rounded-2xl shadow-2xl border border-slate-800" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative max-w-5xl w-full bg-slate-900 p-4 rounded-2xl shadow-2xl border border-slate-800"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
-              <h4 className="text-sm font-semibold text-white truncate">{lightbox.title}</h4>
+              <h4 className="text-sm font-semibold text-white truncate max-w-md sm:max-w-xl">
+                {lightbox.title}
+              </h4>
               <button
                 type="button"
                 onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
@@ -166,7 +192,13 @@ export default function Activities() {
                 <XIcon className="w-5 h-5" />
               </button>
             </div>
-            <img src={lightbox.src} alt={lightbox.title} className="w-full max-h-[75vh] object-contain rounded-lg" />
+            <div className="flex justify-center items-center overflow-auto max-h-[80vh] p-2 bg-slate-950/50 rounded-xl">
+              <img
+                src={lightbox.src}
+                alt={lightbox.title}
+                className="w-auto h-auto max-h-[75vh] max-w-full object-contain rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
       )}

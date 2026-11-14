@@ -45,7 +45,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Right Column: Socials & Back to Top */}
+          {/* Right Column: Socials*/}
           <div className="md:col-span-3 flex flex-col md:items-end space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
               Connect
@@ -77,15 +77,6 @@ export default function Footer() {
                 <MailIcon className="w-4 h-4" />
               </a>
             </div>
-
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors pt-2 cursor-pointer"
-            >
-              Back to top
-              <ArrowUpIcon className="w-3.5 h-3.5" />
-            </button>
           </div>
         </div>
 

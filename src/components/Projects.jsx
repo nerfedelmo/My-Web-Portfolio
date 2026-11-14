@@ -78,9 +78,8 @@ function ProjectCard({ project, onOpenLightbox }) {
                     e.stopPropagation();
                     setCurrentSlide(dotIdx);
                   }}
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    currentSlide === dotIdx ? "w-4 bg-cyan-400" : "bg-white/60 hover:bg-white"
-                  }`}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${currentSlide === dotIdx ? "w-4 bg-cyan-400" : "bg-white/60 hover:bg-white"
+                    }`}
                   aria-label={`Go to slide ${dotIdx + 1}`}
                 />
               ))}
@@ -115,7 +114,7 @@ function ProjectCard({ project, onOpenLightbox }) {
         </div>
 
         {/* Actions */}
-        <div className="mt-auto pt-6 flex items-center justify-between gap-3 border-t border-slate-200/80 dark:border-slate-800/80">
+        <div className="mt-auto pt-6 flex flex-wrap items-center gap-2.5 border-t border-slate-200/80 dark:border-slate-800/80">
           {githubUrl ? (
             <a
               href={githubUrl}
@@ -124,7 +123,7 @@ function ProjectCard({ project, onOpenLightbox }) {
               className="glow-button inline-flex items-center gap-2 text-xs sm:text-sm font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2 rounded-xl transition-all"
             >
               <GithubIcon className="w-4 h-4" />
-              Source Code
+              GitHub Repository
             </a>
           ) : (
             <span className="text-xs text-slate-500 italic">Internal Repo</span>
@@ -135,9 +134,9 @@ function ProjectCard({ project, onOpenLightbox }) {
               href={liveUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-cyan-600 dark:text-cyan-400 hover:underline"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-xl transition-colors shadow-xs"
             >
-              Live Demo
+              Visit Website
               <ExternalLinkIcon className="w-3.5 h-3.5" />
             </a>
           )}
