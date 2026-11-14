@@ -1,30 +1,45 @@
 import { experience } from "../data/experience";
+import { BriefcaseIcon } from "./Icons";
 
 export default function Experience() {
   return (
-    <section id="experience" className="mb-50 px-10">
-      <h1 className="text-3xl font-black mb-10 text-center xl:text-left xl:pl-60">
-        WORK EXPERIENCE
-        <div className="grow h-0.5 bg-slate-400 mt-4"></div>
-      </h1>
+    <section id="experience" className="py-12 px-4 sm:px-8 lg:px-20 max-w-7xl mx-auto">
+      <div className="flex items-center gap-3 mb-8">
+        <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+          <BriefcaseIcon className="w-5 h-5" />
+        </div>
+        <div>
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+            Career Journey
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+            Work Experience
+          </h2>
+        </div>
+      </div>
 
-      <div className="max-w-7xl mx-auto xl:w-1/2">
-        <div className="edu-card relative border-l-2 border-slate-400 ml-3 space-y-10">
+      <div className="max-w-3xl">
+        <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 space-y-6">
           {experience.map((item, index) => (
-            <div key={index} className="relative pl-8">
-              <div className="absolute -left-2.25 top-2 w-4 h-4 rounded-full bg-slate-900 border-2 border-white ring-2 ring-slate-300"></div>
-              <div className="edu-card-bg bg-white p-6 rounded-xl border border-slate-400 shadow-[4px_4px_15px_rgba(0,0,0,0.5)] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2">
+            <div key={index} className="relative pl-6">
+              <div className="absolute -left-1.75 top-2.5 w-3.5 h-3.5 rounded-full bg-cyan-500 border-2 border-white dark:border-slate-900 ring-2 ring-cyan-500/20" />
+              <div className="modern-card p-5 sm:p-6 rounded-2xl">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
                   <div>
-                    <h3 className="whiteText text-md font-bold uppercase tracking-tight">
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white uppercase tracking-tight">
                       {item.company}
                     </h3>
-                    <p className="smallText text-sm mt-1">{item.role}</p>
+                    <p className="text-sm font-medium text-cyan-600 dark:text-cyan-400">
+                      {item.role}
+                    </p>
                   </div>
-                  <span className="smallText text-sm font-medium italic whitespace-nowrap">
+                  <span className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full self-start sm:self-auto">
                     {item.period}
                   </span>
                 </div>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
+                  Developed strong professional communication, real-time problem-solving, and cross-functional team collaboration skills in a high-demand enterprise support environment.
+                </p>
               </div>
             </div>
           ))}

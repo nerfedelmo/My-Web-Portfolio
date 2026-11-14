@@ -1,43 +1,30 @@
 export const contacts = [
   {
+    type: "linkedin",
     label: "LinkedIn",
+    display: "linkedin.com/in/joshua-manansala-577bb9390",
     url: "https://www.linkedin.com/in/joshua-manansala-577bb9390/",
-    display: "https://www.linkedin.com/in/joshua-manansala-577bb9390/",
-    icon: `<svg width="60" height="60" viewBox="0 0 32 32" fill="none">
-  <rect x="2" y="2" width="28" height="28" rx="14" fill="#1275B1" />
-  <path
-    d="M12.6186 9.69215C12.6186 10.6267 11.8085 11.3843 10.8093 11.3843C9.81004 11.3843 9 10.6267 9 9.69215C9 8.7576 9.81004 8 10.8093 8C11.8085 8 12.6186 8.7576 12.6186 9.69215Z"
-    fill="white" />
-  <path d="M9.24742 12.6281H12.3402V22H9.24742V12.6281Z" fill="white" />
-  <path
-    d="M17.3196 12.6281H14.2268V22H17.3196C17.3196 22 17.3196 19.0496 17.3196 17.2049C17.3196 16.0976 17.6977 14.9855 19.2062 14.9855C20.911 14.9855 20.9008 16.4345 20.8928 17.5571C20.8824 19.0244 20.9072 20.5219 20.9072 22H24V17.0537C23.9738 13.8954 23.1508 12.4401 20.4433 12.4401C18.8354 12.4401 17.8387 13.1701 17.3196 13.8305V12.6281Z"
-    fill="white" />
-</svg>`,
+    description: "Professional network, experience & credentials",
   },
   {
-    label: "Github",
+    type: "github",
+    label: "GitHub",
+    display: "github.com/nerfedelmo",
     url: "https://github.com/nerfedelmo",
-    display: "https://github.com/nerfedelmo",
-    icon: `<svg width="60" height="60" viewBox="0 0 24 24" fill="none">
-  <path fill-rule="evenodd" clip-rule="evenodd"
-    d="M12.2047 0C6.56031 0 1.74628 4.08 0.84254 9.65C-0.06119 15.22 3.2126 20.63 8.5694 22.41C9.1482 22.51 9.3529 22.15 9.3529 21.85V19.89C6.1411 20.59 5.4635 18.35 5.4635 18.35C5.2504 17.65 4.7977 17.05 4.1858 16.66 3.1482 15.96 4.2705 15.96 4.2705 15.96C5.0076 16.06 5.6557 16.5 6.0282 17.14C6.3436 17.71 6.8739 18.14 7.5017 18.32C8.1296 18.5 8.8034 18.42 9.3741 18.1C9.4184 17.52 9.6687 16.97 10.08 16.56C7.5247 16.27 4.8423 15.28 4.8423 10.92C4.8248 9.77 5.2468 8.67 6.0211 7.83C5.6763 6.84 5.7166 5.75 6.1341 4.79 6.1341 4.79 7.1011 4.48 9.2964 5.97C11.181 5.45 13.171 5.45 15.056 5.97C17.251 4.48 18.211 4.79 18.211 4.79C18.635 5.74 18.685 6.82 18.352 7.81C19.127 8.65 19.549 9.75 19.531 10.89V15.31C16.842 16.28 14.28 16.54 14.28 16.54C14.835 17.1 15.121 17.87 15.063 18.66V21.81C15.063 22.19 15.268 22.48 15.854 22.36C21.147 20.54 24.356 15.17 23.455 9.64C22.553 4.12 17.803 0 12.204 0Z"
-    fill="#24292e" />
-</svg>`,
+    description: "Open-source repositories, experiments & projects",
   },
   {
-    label: "GMail",
-    url: "mailto:jmanansalaaa17@gmail.com",
+    type: "email",
+    label: "Gmail",
     display: "jmanansalaaa17@gmail.com",
-    icon: `<svg width="60" height="60" viewBox="0 0 32 32" fill="none">
-  <path
-    d="M2 11.95V20.04C2 23.52 2 25.27 2.67 26.6C3.27 27.77 4.22 28.72 5.39 29.32C6.72 30 8.47 30 11.95 30H20.04C23.52 30 25.27 30 26.6 29.32C27.77 28.72 28.72 27.77 29.32 26.6C30 25.27 30 23.52 30 20.04V11.95C30 8.47 30 6.72 29.32 5.39C28.72 4.22 27.77 3.27 26.6 2.67C25.27 2 23.52 2 20.04 2H11.95C8.47 2 6.72 2 5.39 2.67C4.22 3.27 3.27 4.22 2.67 5.39C2 6.72 2 8.47 2 11.95Z"
-    fill="#F2F2F2" />
-  <path d="M22.05 8.52L16.06 13.19L9.94 8.52V15.07L15.99 19.84L22.05 15.25V8.52Z" fill="#EA4335" />
-  <path d="M26.99 9.17V11.45L22.05 15.25V8.52L23.62 7.38C26.39 5.9 26.99 9.17 26.99 9.17Z"
-    fill="#FBBC05" />
-  <path d="M22.05 15.25V23.99H25.84C26.92 23.88 26.99 22.65 26.99 22.65V11.45L22.05 15.25Z"
-    fill="#34A853" />
-  <path d="M5 11.46V22.65C5.07 23.89 6.15 24 6.15 24H9.94V15.06L5 11.46Z" fill="#4285F4" />
-</svg>`,
+    url: "mailto:jmanansalaaa17@gmail.com",
+    description: "Direct email for inquiries & professional opportunities",
+  },
+  {
+    type: "phone",
+    label: "Phone",
+    display: "+63 991 350 4912",
+    url: "tel:+639913504912",
+    description: "Available for calls & SMS (Philippine Standard Time)",
   },
 ];

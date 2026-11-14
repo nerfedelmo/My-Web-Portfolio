@@ -1,50 +1,111 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { navLinks } from "../data/navLinks";
+import {
+  HomeIcon,
+  BriefcaseIcon,
+  FolderGit2Icon,
+  AwardIcon,
+  MailIcon,
+  SunIcon,
+  MoonIcon,
+} from "./Icons";
 
-const darkModeSVG = `<svg width="32px" height="32px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><title>dark-mode</title><g id="Layer_2" data-name="Layer 2"><g id="Icons"><g><rect width="48" height="48" fill="none" /><g><path d="M14,24A10,10,0,0,0,24,34V14A10,10,0,0,0,14,24Z" /><path d="M24,2A22,22,0,1,0,46,24,21.9,21.9,0,0,0,24,2ZM6,24A18.1,18.1,0,0,1,24,6v8a10,10,0,0,1,0,20v8A18.1,18.1,0,0,1,6,24Z" /></g></g></g></g></svg>`;
+const iconMap = {
+  Home: HomeIcon,
+  Briefcase: BriefcaseIcon,
+  FolderGit2: FolderGit2Icon,
+  Award: AwardIcon,
+  Mail: MailIcon,
+};
 
 export default function Navbar() {
+  const [isDark, setIsDark] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
   useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark") {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialDark = savedTheme === "dark" || (!savedTheme && prefersDark);
+
+    if (initialDark) {
       document.documentElement.classList.add("dark");
+      setIsDark(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setIsDark(false);
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((sec) => observer.observe(sec));
+
+    return () => observer.disconnect();
   }, []);
 
   function handleDarkModeToggle() {
-    document.documentElement.classList.toggle("dark");
-    const isDark = document.documentElement.classList.contains("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
+    const nextDark = !isDark;
+    setIsDark(nextDark);
+    if (nextDark) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
   }
 
   return (
-    <header className="px-10 sticky top-0 z-50 flex justify-center items-center py-1 font-sans">
-      <nav className="flex items-center gap-4 bg-[#d1d1d11a] backdrop-blur-2xl p-2 rounded-3xl border border-gray-400 mt-4">
-        {navLinks.map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="group relative flex flex-col items-center px-3 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
-          >
-            <span className="bg-reveal"></span>
-            <div dangerouslySetInnerHTML={{ __html: item.icon }} />
-            <span className="absolute -bottom-10 scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 bg-[#1e1e1e] border border-white/10 text-gray-300 text-[16px] px-2.5 py-1 rounded-md pointer-events-none">
-              {item.label}
-            </span>
-          </a>
-        ))}
+    <header className="sticky top-0 z-50 flex justify-center items-center py-2 px-4 sm:px-8">
+      {/* Desktop / Tablet Nav */}
+      <nav className="flex items-center gap-1.5 sm:gap-2 bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl p-1.5 sm:p-2 rounded-full border border-slate-200 dark:border-slate-800 shadow-lg shadow-black/5 dark:shadow-black/20 transition-all duration-300">
+        {navLinks.map((item) => {
+          const Icon = iconMap[item.icon] || HomeIcon;
+          const isActive = activeSection === item.href.replace("#", "");
 
-        <div
-          id="dark-mode-toggle"
+          return (
+            <a
+              key={item.label}
+              href={item.href}
+              className={`group relative flex items-center gap-1.5 px-3 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
+                isActive
+                  ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800"
+              }`}
+            >
+              <Icon className="w-4 h-4 shrink-0" />
+              {/* Visible on sm+ screens, hidden on very narrow screens for compactness */}
+              <span className="hidden md:inline">{item.label}</span>
+
+              {/* Tooltip on smaller screens */}
+              <span className="md:hidden absolute -bottom-9 left-1/2 -translate-x-1/2 scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-150 bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-200 text-xs px-2 py-0.5 rounded shadow pointer-events-none whitespace-nowrap">
+                {item.label}
+              </span>
+            </a>
+          );
+        })}
+
+        {/* Divider */}
+        <div className="h-4 w-px bg-slate-200 dark:bg-slate-800 mx-1" />
+
+        {/* Dark Mode Toggle */}
+        <button
+          type="button"
           onClick={handleDarkModeToggle}
-          className="group relative flex flex-col items-center px-3 py-2.5 rounded-xl transition-all duration-300 cursor-pointer"
+          aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          className="flex items-center justify-center p-2 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
         >
-          <span className="bg-reveal"></span>
-          <div dangerouslySetInnerHTML={{ __html: darkModeSVG }} />
-          <span className="absolute -bottom-10 scale-95 opacity-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 bg-[#1e1e1e] border border-white/10 text-gray-300 text-[16px] px-2.5 py-1 rounded-md pointer-events-none">
-            Dark Mode
-          </span>
-        </div>
+          {isDark ? <SunIcon className="w-4 h-4 text-amber-400" /> : <MoonIcon className="w-4 h-4 text-slate-700" />}
+        </button>
       </nav>
     </header>
   );
