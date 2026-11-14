@@ -1,0 +1,90 @@
+export const activities = [
+  {
+    title: "IT Essentials",
+    issuer: "Cisco Networking Academy",
+    date: "01/2024",
+    thumbnail: "/images/it-essentials.png",
+    badgeUrl:
+      "https://www.credly.com/badges/85c5bb51-7475-428e-a2d9-9fa55dd33e88/public_url",
+    isCarousel: false,
+  },
+  {
+    title: "LFC108: Cybersecurity Essentials",
+    issuer: "The Linux Foundation",
+    date: "10/2025",
+    thumbnail: "/images/lfc108-cybersecurity-essentials.png",
+    badgeUrl:
+      "https://www.credly.com/badges/2eee75ff-2a45-4f2d-a65e-08431e6271f3/public_url",
+    isCarousel: false,
+  },
+  {
+    title: "Ethical Hacker",
+    issuer: "Cisco Networking Academy",
+    date: "01/2026",
+    thumbnail: "/images/ethical-hacker.png",
+    badgeUrl:
+      "https://www.credly.com/badges/883c3988-d6e7-4a05-a3a2-25a535e60867/public_url",
+    isCarousel: false,
+  },
+  {
+    title: "CloudStaff AI Hackathon",
+    issuer:
+      'CloudStaff Hackathon: "Code for Crisis: Empowering Communities When It Matters Most"',
+    date: "11/2025",
+    isCarousel: true,
+    carouselImages: [
+      "/images/1000057257.jpg",
+      "/images/1000057229.jpg",
+      "/images/1000060719.jpg",
+      "/images/1000060722.jpg",
+    ],
+    badgeUrl: null,
+  },
+  {
+    title: "Cisco CTF Competition 2026",
+    issuer: "1st Place in Cisco Capture-The-Flag Competition 2026 @ Holy Angel University",
+    date: "01/2026",
+    isCarousel: true,
+    carouselImages: [
+      "/images/IMG_7005.jpg",
+      "/images/IMG_6999.jpg",
+      "/images/IMG_2992.jpg",
+      "/images/IMG_3015.jpg",
+    ],
+    badgeUrl: null,
+    theme: "Future-proofing Networking Skills in the Philippines in the Age of AI",
+  },
+  {
+    title: "Postman API Fundamentals Student Expert",
+    issuer: "Postman",
+    date: "03/2026",
+    thumbnail: "/images/assertion-rTomrjWAQg63SsZ1ze5luQ.png",
+    badgeUrl:
+      "https://badges.parchment.com/public/assertions/rTomrjWAQg63SsZ1ze5luQ?identity__email=manansalapogi17%40gmail.com",
+    isCarousel: false,
+  },
+  {
+    title: "Introduction to Cybersecurity",
+    issuer: "Cisco Networking Academy",
+    date: "03/2026",
+    thumbnail: "/images/introduction-to-cybersecurity.png",
+    badgeUrl: "https://www.credly.com/badges/4e159c0d-3ba5-4ddf-a654-09d65970e8ef",
+    isCarousel: false,
+  },
+  {
+    title: "Networking devices and initial configuration",
+    issuer: "Cisco Networking Academy",
+    date: "05/2026",
+    thumbnail: "/images/networking-devices-and-initial-configuration.png",
+    badgeUrl: "https://www.credly.com/badges/bd69cc46-3b9d-442a-8ca5-afdb23a1a6f4",
+    isCarousel: false,
+  },
+  {
+    title: "Certified AppSec PenTester (CAPen)",
+    issuer: "The SecOps Group\nCertificate ID: 11718089",
+    date: "08/2026",
+    thumbnail: "/images/Joshua_Manansala_Certified_AppSec_Pentester_CAPen-1.png",
+    badgeUrl: "https://pentestingexams.com/certificate-validation/",
+    isCarousel: false,
+  },
+];

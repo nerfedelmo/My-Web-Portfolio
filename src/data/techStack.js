@@ -1,0 +1,18 @@
+export const techStack = [
+  { name: "HTML", src: "/assets/html.png" },
+  { name: "CSS", src: "/assets/css.png" },
+  { name: "Javascript", src: "/assets/javascript.png" },
+  { name: "React", src: "/assets/react.png" },
+  { name: "Bootstrap", src: "/assets/bootstrap.png" },
+  { name: "Tailwind css", src: "/assets/tailwind.png" },
+  { name: "Java", src: "/assets/java.png" },
+  { name: "Python", src: "/assets/python.png" },
+  { name: "MySql", src: "/assets/mysql.png" },
+  { name: "PostgreSql", src: "/assets/postgresql.png" },
+  { name: "PHP", src: "/assets/php.png" },
+  { name: "Figma", src: "/assets/figma.png" },
+  { name: "Kali Linux", src: "/assets/kalilinux.png" },
+  { name: "Burp Suite", src: "/assets/burpsuite.png" },
+  { name: "Wireshark", src: "/assets/wireshark.png" },
+  { name: "Postman", src: "/assets/postman.png" },
+];
