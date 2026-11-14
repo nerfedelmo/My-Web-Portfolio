@@ -134,7 +134,7 @@ export default function Contact() {
                   <span className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 shrink-0">
                     <PhoneIcon className="w-4 h-4" />
                   </span>
-                  <span className="font-mono text-xs sm:text-sm font-medium">+63 991 350 4912</span>
+                  <span className="font-mono text-xs sm:text-sm font-medium">+63 999 413 2900</span>
                 </a>
 
                 <button
@@ -191,7 +191,7 @@ export default function Contact() {
                 value={formData.name}
                 onChange={handleInputChange}
                 required
-                placeholder="e.g. Alex Rivera"
+                placeholder="e.g. John Doe"
                 className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/25 focus:border-cyan-500 transition-all shadow-xs"
               />
             </div>
@@ -206,7 +206,7 @@ export default function Contact() {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                placeholder="alex@example.com"
+                placeholder="JohnDoe@example.com"
                 className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500/25 focus:border-cyan-500 transition-all shadow-xs"
               />
             </div>
@@ -228,11 +228,10 @@ export default function Contact() {
 
             {status.message && (
               <div
-                className={`p-3 rounded-xl text-xs font-medium ${
-                  status.state === "success"
+                className={`p-3 rounded-xl text-xs font-medium ${status.state === "success"
                     ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
                     : "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20"
-                }`}
+                  }`}
               >
                 {status.message}
               </div>

@@ -7,12 +7,12 @@ export default function Hero() {
     <div className="max-w-7xl mx-auto py-12 sm:py-16 px-4 sm:px-8 lg:px-20">
       <div className="flex flex-col xl:flex-row gap-8 lg:gap-12 items-start justify-center">
         {/* Left: Profile Card */}
-        <div className="w-full xl:w-1/3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm dark:shadow-none text-center flex flex-col items-center">
-          <div className="relative mb-5">
+        <div className="w-full xl:w-[360px] 2xl:w-[380px] shrink-0 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm dark:shadow-none text-center flex flex-col items-center">
+          <div className="w-full flex justify-center mb-4">
             <img
               src="/images/AI_Joshua.png"
               alt="Joshua Manansala"
-              className="w-56 h-72 sm:w-64 sm:h-80 object-cover rounded-2xl shadow-md border border-slate-200 dark:border-slate-800"
+              className="w-full max-w-[320px] aspect-[4/5] object-cover rounded-2xl shadow-md border border-slate-200 dark:border-slate-800"
             />
           </div>
 
@@ -42,7 +42,7 @@ export default function Hero() {
         </div>
 
         {/* Right: Content & Tech Stack */}
-        <div className="w-full xl:w-2/3 flex flex-col justify-center">
+        <div className="flex-1 min-w-0 flex flex-col justify-center">
           <div className="mb-8 text-center xl:text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
               About & Technical Focus
