@@ -6,6 +6,7 @@ import Activities from "./components/Activities";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import FadeIn from "./components/FadeIn";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
         </section>
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }
