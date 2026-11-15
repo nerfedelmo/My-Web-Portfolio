@@ -75,7 +75,7 @@ export default function Contact() {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 mt-4 max-w-md leading-relaxed font-normal">
-              Have a project, a security inquiry, or an open role? Drop a message or reach out directly through any of the channels below.
+              Have a project, an inquiry, or an open role? Drop a message or reach out directly through any of the channels below.
             </p>
 
             {/* Direct Links List */}
@@ -229,8 +229,8 @@ export default function Contact() {
             {status.message && (
               <div
                 className={`p-3 rounded-xl text-xs font-medium ${status.state === "success"
-                    ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
-                    : "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20"
+                  ? "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20"
+                  : "bg-rose-500/10 text-rose-700 dark:text-rose-400 border border-rose-500/20"
                   }`}
               >
                 {status.message}
