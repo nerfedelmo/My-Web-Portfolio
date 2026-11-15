@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { activities } from "../data/activities";
+import FadeIn from "./FadeIn";
 import {
   AwardIcon,
   ExternalLinkIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
   XIcon,
 } from "./Icons";
 
@@ -142,6 +145,23 @@ function ActivityCard({ item, onOpenLightbox }) {
 
 export default function Activities() {
   const [lightbox, setLightbox] = useState({ isOpen: false, src: "", title: "" });
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const INITIAL_COUNT = 6;
+  const visibleActivities = isExpanded ? activities : activities.slice(0, INITIAL_COUNT);
+  const remainingCount = activities.length - INITIAL_COUNT;
+
+  const handleToggle = () => {
+    if (isExpanded) {
+      setIsExpanded(false);
+      const section = document.getElementById("activities");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      setIsExpanded(true);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-20">
@@ -159,16 +179,43 @@ export default function Activities() {
         </div>
       </div>
 
-      {/* Grid: 3 columns on large screens */}
+      {/* Grid: 3 columns on large screens (displays first 2 rows initially) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {activities.map((item, index) => (
-          <ActivityCard
-            key={index}
-            item={item}
-            onOpenLightbox={(src, title) => setLightbox({ isOpen: true, src, title })}
-          />
+        {visibleActivities.map((item, index) => (
+          <FadeIn key={item.title + index} delay={(index % 3) * 80} threshold={0.05} className="h-full">
+            <ActivityCard
+              item={item}
+              onOpenLightbox={(src, title) => setLightbox({ isOpen: true, src, title })}
+            />
+          </FadeIn>
         ))}
       </div>
+
+      {/* Expand / Collapse Button */}
+      {activities.length > INITIAL_COUNT && (
+        <div className="mt-10 flex flex-col items-center justify-center">
+          <button
+            type="button"
+            onClick={handleToggle}
+            className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-slate-900 text-white dark:bg-slate-800 dark:text-slate-100 hover:bg-slate-800 dark:hover:bg-slate-700 border border-slate-700/50 dark:border-slate-700 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer text-sm font-semibold hover:border-cyan-500/50"
+          >
+            {isExpanded ? (
+              <>
+                <span>Show Less</span>
+                <ChevronUpIcon className="w-4 h-4 text-cyan-400 group-hover:-translate-y-0.5 transition-transform" />
+              </>
+            ) : (
+              <>
+                <span>Show All Credentials</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold">
+                  +{remainingCount}
+                </span>
+                <ChevronDownIcon className="w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform" />
+              </>
+            )}
+          </button>
+        </div>
+      )}
 
       {/* High-Res Document Lightbox Modal */}
       {lightbox.isOpen && (
