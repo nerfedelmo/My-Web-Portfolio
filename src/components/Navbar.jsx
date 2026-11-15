@@ -65,8 +65,8 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 flex justify-center items-center py-2.5 px-4 sm:px-8">
-      <nav className="flex items-center gap-1 sm:gap-1.5 bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl p-1.5 rounded-full border border-slate-200/90 dark:border-slate-800 shadow-md shadow-black/5 dark:shadow-black/20 transition-all duration-300">
+    <header className="px-10 sticky top-0 z-50 flex justify-center items-center py-1">
+      <nav className="flex items-center gap-1 sm:gap-1.5 bg-[#d1d1d11a] backdrop-blur-2xl p-1.5 rounded-full border border-gray-400/60 dark:border-gray-500/40 mt-4 shadow-sm transition-all duration-300">
         {navLinks.map((item) => {
           const Icon = iconMap[item.icon] || HomeIcon;
           const isActive = activeSection === item.href.replace("#", "");
