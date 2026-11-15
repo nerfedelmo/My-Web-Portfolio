@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { projects } from "../data/projects";
+import FadeIn from "./FadeIn";
 import {
   FolderGit2Icon,
   GithubIcon,
@@ -167,11 +168,12 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
         {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            project={project}
-            onOpenLightbox={(src, title) => setLightbox({ isOpen: true, src, title })}
-          />
+          <FadeIn key={index} delay={index * 120} threshold={0.05} className="h-full">
+            <ProjectCard
+              project={project}
+              onOpenLightbox={(src, title) => setLightbox({ isOpen: true, src, title })}
+            />
+          </FadeIn>
         ))}
       </div>
 
