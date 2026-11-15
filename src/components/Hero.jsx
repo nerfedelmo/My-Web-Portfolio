@@ -5,14 +5,13 @@ import { ExternalLinkIcon } from "./Icons";
 export default function Hero() {
   return (
     <div className="max-w-7xl mx-auto py-12 sm:py-16 px-4 sm:px-8 lg:px-20">
-      <div className="flex flex-col xl:flex-row gap-8 lg:gap-12 items-start justify-center">
-        {/* Left: Profile Card */}
-        <div className="w-full xl:w-[360px] 2xl:w-[380px] shrink-0 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm dark:shadow-none text-center flex flex-col items-center">
-          <div className="w-full flex justify-center mb-4">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start justify-center">
+        <div className="w-full lg:w-[340px] xl:w-[370px] shrink-0 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm dark:shadow-none text-center flex flex-col items-center transition-all duration-300">
+          <div className="w-full aspect-[4/5] overflow-hidden rounded-2xl shadow-md border border-slate-200 dark:border-slate-800 mb-4">
             <img
-              src="/images/AI_Joshua.png"
+              src="/images/IMG_2792.jpg"
               alt="Joshua Manansala"
-              className="w-full max-w-[320px] aspect-[4/5] object-cover rounded-2xl shadow-md border border-slate-200 dark:border-slate-800"
+              className="w-full h-full object-cover object-top"
             />
           </div>
 
@@ -43,7 +42,7 @@ export default function Hero() {
 
         {/* Right: Content & Tech Stack */}
         <div className="flex-1 min-w-0 flex flex-col justify-center">
-          <div className="mb-8 text-center xl:text-left">
+          <div className="mb-8 text-center lg:text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400">
               About & Technical Focus
             </span>
@@ -60,7 +59,7 @@ export default function Hero() {
 
           {/* TECH STACK BADGES */}
           <div className="mb-8">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 text-center xl:text-left">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 text-center lg:text-left">
               Core Technologies & Security Tools
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
@@ -80,18 +79,17 @@ export default function Hero() {
 
           {/* EDUCATION */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 text-center xl:text-left">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 text-center lg:text-left">
               Education
             </h3>
             <div className="relative border-l-2 border-slate-300 dark:border-slate-800 ml-3 space-y-4">
               {education.map((edu) => (
                 <div key={edu.school} className="relative pl-6">
                   <div
-                    className={`absolute -left-1.75 top-2.5 w-3.5 h-3.5 rounded-full border-2 ${
-                      edu.current
-                        ? "bg-cyan-600 dark:bg-cyan-500 border-white dark:border-slate-900 ring-2 ring-cyan-500/20"
-                        : "bg-slate-400 dark:bg-slate-700 border-white dark:border-slate-900"
-                    }`}
+                    className={`absolute -left-1.75 top-2.5 w-3.5 h-3.5 rounded-full border-2 ${edu.current
+                      ? "bg-cyan-600 dark:bg-cyan-500 border-white dark:border-slate-900 ring-2 ring-cyan-500/20"
+                      : "bg-slate-400 dark:bg-slate-700 border-white dark:border-slate-900"
+                      }`}
                   />
                   <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl shadow-xs">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
