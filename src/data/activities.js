@@ -24,6 +24,15 @@ export const activities = [
     tags: ["Network Security", "Forensics", "CTF 1st Place"],
   },
   {
+    title: "Certified Cyber Security Analyst (C3SA)",
+    issuer: "CyberWarfare Labs\nCertificate ID: 6b05a608ad503cfdbcccb5e1",
+    date: "11/2026",
+    thumbnail: "/images/certificates/JoshuaManansala_C3SA.png",
+    badgeUrl: "https://labs.cyberwarfare.live/credential/achievement/6b05a608ad503cfdbcccb5e1",
+    isCarousel: false,
+    tags: ["SOC", "Ethical Hacking", "Network Security"],
+  },
+  {
     title: "CloudStaff AI Hackathon",
     issuer: 'CloudStaff Hackathon: "Code for Crisis: Empowering Communities When It Matters Most"',
     date: "11/2025",
