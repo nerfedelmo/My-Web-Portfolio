@@ -22,7 +22,7 @@ function ActivityCard({ item, onOpenLightbox }) {
       {/* Media Box - Actual Certificate or Event Photo */}
       <div
         className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 flex justify-center items-center cursor-pointer group/img"
-        onClick={() => onOpenLightbox(activeImage, item.title)}
+        onClick={() => onOpenLightbox(images, currentSlide, item.title)}
       >
         <img
           src={activeImage}
@@ -118,7 +118,7 @@ function ActivityCard({ item, onOpenLightbox }) {
         <div className="mt-auto pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between">
           <button
             type="button"
-            onClick={() => onOpenLightbox(activeImage, item.title)}
+            onClick={() => onOpenLightbox(images, currentSlide, item.title)}
             className="text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
           >
             Preview Document
@@ -144,7 +144,7 @@ function ActivityCard({ item, onOpenLightbox }) {
 }
 
 export default function Activities() {
-  const [lightbox, setLightbox] = useState({ isOpen: false, src: "", title: "" });
+  const [lightbox, setLightbox] = useState({ isOpen: false, images: [], initialIndex: 0, title: "" });
   const [isExpanded, setIsExpanded] = useState(false);
 
   const INITIAL_COUNT = 6;
@@ -185,7 +185,14 @@ export default function Activities() {
           <FadeIn key={item.title + index} delay={(index % 3) * 80} threshold={0.05} className="h-full">
             <ActivityCard
               item={item}
-              onOpenLightbox={(src, title) => setLightbox({ isOpen: true, src, title })}
+              onOpenLightbox={(imgs, idx, title) =>
+                setLightbox({
+                  isOpen: true,
+                  images: Array.isArray(imgs) ? imgs : [imgs],
+                  initialIndex: idx || 0,
+                  title,
+                })
+              }
             />
           </FadeIn>
         ))}
@@ -217,12 +224,13 @@ export default function Activities() {
         </div>
       )}
 
-      {/* High-Res Document Lightbox Modal */}
+      {/* High-Res Document Lightbox Modal with Carousel Navigation */}
       <LightboxModal
         isOpen={lightbox.isOpen}
-        src={lightbox.src}
+        images={lightbox.images}
+        initialIndex={lightbox.initialIndex}
         title={lightbox.title}
-        onClose={() => setLightbox({ isOpen: false, src: "", title: "" })}
+        onClose={() => setLightbox({ isOpen: false, images: [], initialIndex: 0, title: "" })}
       />
     </div>
   );

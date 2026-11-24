@@ -35,7 +35,7 @@ function ProjectCard({ project, onOpenLightbox }) {
         className="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex justify-center items-center cursor-pointer"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        onClick={() => onOpenLightbox(activeImage, title)}
+        onClick={() => onOpenLightbox(images, currentSlide, title)}
       >
         <img
           src={activeImage}
@@ -148,7 +148,7 @@ function ProjectCard({ project, onOpenLightbox }) {
 }
 
 export default function Projects() {
-  const [lightbox, setLightbox] = useState({ isOpen: false, src: "", title: "" });
+  const [lightbox, setLightbox] = useState({ isOpen: false, images: [], initialIndex: 0, title: "" });
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4 sm:px-8 lg:px-20">
@@ -171,18 +171,26 @@ export default function Projects() {
           <FadeIn key={index} delay={index * 120} threshold={0.05} className="h-full">
             <ProjectCard
               project={project}
-              onOpenLightbox={(src, title) => setLightbox({ isOpen: true, src, title })}
+              onOpenLightbox={(imgs, idx, title) =>
+                setLightbox({
+                  isOpen: true,
+                  images: Array.isArray(imgs) ? imgs : [imgs],
+                  initialIndex: idx || 0,
+                  title,
+                })
+              }
             />
           </FadeIn>
         ))}
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with Carousel Navigation */}
       <LightboxModal
         isOpen={lightbox.isOpen}
-        src={lightbox.src}
+        images={lightbox.images}
+        initialIndex={lightbox.initialIndex}
         title={lightbox.title}
-        onClose={() => setLightbox({ isOpen: false, src: "", title: "" })}
+        onClose={() => setLightbox({ isOpen: false, images: [], initialIndex: 0, title: "" })}
         maxWidth="max-w-4xl"
       />
     </div>
