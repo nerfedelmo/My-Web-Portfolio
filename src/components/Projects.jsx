@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { projects } from "../data/projects";
 import FadeIn from "./FadeIn";
+import LightboxModal from "./LightboxModal";
 import {
   FolderGit2Icon,
   GithubIcon,
   ExternalLinkIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  XIcon,
 } from "./Icons";
 
 function ProjectCard({ project, onOpenLightbox }) {
@@ -178,26 +178,13 @@ export default function Projects() {
       </div>
 
       {/* Lightbox Modal */}
-      {lightbox.isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-in fade-in duration-200"
-          onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
-        >
-          <div className="relative max-w-4xl w-full bg-slate-900 p-4 rounded-2xl shadow-2xl border border-slate-800" onClick={(e) => e.stopPropagation()}>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
-              <h4 className="text-sm font-semibold text-white truncate">{lightbox.title}</h4>
-              <button
-                type="button"
-                onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
-              >
-                <XIcon className="w-5 h-5" />
-              </button>
-            </div>
-            <img src={lightbox.src} alt={lightbox.title} className="w-full max-h-[75vh] object-contain rounded-lg" />
-          </div>
-        </div>
-      )}
+      <LightboxModal
+        isOpen={lightbox.isOpen}
+        src={lightbox.src}
+        title={lightbox.title}
+        onClose={() => setLightbox({ isOpen: false, src: "", title: "" })}
+        maxWidth="max-w-4xl"
+      />
     </div>
   );
 }

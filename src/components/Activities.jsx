@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { activities } from "../data/activities";
 import FadeIn from "./FadeIn";
+import LightboxModal from "./LightboxModal";
 import {
   AwardIcon,
   ExternalLinkIcon,
@@ -8,7 +9,6 @@ import {
   ChevronRightIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  XIcon,
 } from "./Icons";
 
 function ActivityCard({ item, onOpenLightbox }) {
@@ -218,37 +218,12 @@ export default function Activities() {
       )}
 
       {/* High-Res Document Lightbox Modal */}
-      {lightbox.isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-4 animate-in fade-in duration-200"
-          onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
-        >
-          <div
-            className="relative max-w-5xl w-full bg-slate-900 p-4 rounded-2xl shadow-2xl border border-slate-800"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
-              <h4 className="text-sm font-semibold text-white truncate max-w-md sm:max-w-xl">
-                {lightbox.title}
-              </h4>
-              <button
-                type="button"
-                onClick={() => setLightbox({ isOpen: false, src: "", title: "" })}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 cursor-pointer"
-              >
-                <XIcon className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="flex justify-center items-center overflow-auto max-h-[80vh] p-2 bg-slate-950/50 rounded-xl">
-              <img
-                src={lightbox.src}
-                alt={lightbox.title}
-                className="w-auto h-auto max-h-[75vh] max-w-full object-contain rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      <LightboxModal
+        isOpen={lightbox.isOpen}
+        src={lightbox.src}
+        title={lightbox.title}
+        onClose={() => setLightbox({ isOpen: false, src: "", title: "" })}
+      />
     </div>
   );
 }
