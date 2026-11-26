@@ -17,6 +17,9 @@ export const projects = [
       "/images/SmileCheck_AddServices.png",
       "/images/SmileCheck_AddDental.png",
       "/images/SmileCheck_AddTreatment.png",
+      "/images/IMG_2847.jpg",
+      "/images/IMG_2850.jpg",
+      "/images/IMG_2865.jpg",
     ],
   },
   {
