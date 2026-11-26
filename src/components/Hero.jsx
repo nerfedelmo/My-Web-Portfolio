@@ -1,6 +1,6 @@
 import { techStack } from "../data/techStack";
 import { education } from "../data/education";
-import { ExternalLinkIcon } from "./Icons";
+import { ExternalLinkIcon, AwardIcon } from "./Icons";
 
 export default function Hero() {
   return (
@@ -25,7 +25,7 @@ export default function Hero() {
             Angeles City, Pampanga, Philippines
           </p>
 
-          <div className="mt-6 w-full flex justify-center">
+          <div className="mt-6 w-full flex flex-col items-center gap-2.5">
             <div className="rgb-border-wrapper w-full max-w-xs">
               <a
                 href="/PDF-Copy/Resume_JoshuaManansala.pdf"
@@ -37,6 +37,15 @@ export default function Hero() {
                 <ExternalLinkIcon className="w-4 h-4" />
               </a>
             </div>
+
+            {/* Smaller secondary button: View Credentials */}
+            <a
+              href="#activities"
+              className="inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 py-1.5 px-4 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800/80 transition-all duration-200 cursor-pointer"
+            >
+              <AwardIcon className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              View Credentials
+            </a>
           </div>
         </div>
 
